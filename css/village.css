@@ -1,0 +1,827 @@
+.scene {
+  height: inherit;
+  width: inherit; }
+
+.ui-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; }
+
+.logo {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 99; }
+  .logo img {
+    width: 30px; }
+
+#player_grid {
+  z-index: 2; }
+
+#scene_grid {
+  z-index: 1; }
+  #scene_grid.iso {
+    transform: rotateX(55deg) rotateZ(-135deg) translate3d(0, 0, 0em); }
+
+#ground_grid {
+  z-index: 0; }
+  #ground_grid.iso {
+    transform: rotateX(55deg) rotateZ(-135deg) translate3d(0, 0, -1em); }
+
+.grid {
+  position: absolute;
+  width: 20em;
+  height: 20em;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  flex-flow: wrap;
+  align-items: center;
+  backface-visibility: hidden;
+  transform-style: preserve-3d; }
+  .grid div {
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    cursor: pointer;
+    transform-origin: 50% 50%; }
+    .grid div:hover {
+      outline: 2px solid white; }
+    .grid div:active {
+      outline: 2px solid rgba(255, 255, 255, 0.5); }
+  .grid.sidescroller {
+    transform: rotateX(90deg) rotateZ(-90deg) translate3d(0, 0, -35vh); }
+
+.empty {
+  background-color: transparent;
+  transform: translate3d(0, 0, 0em);
+  transform-style: preserve-3d;
+  animation-fill-mode: forwards;
+  transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+  background-blend-mode: soft-light;
+  background-size: 100%;
+  background-color: transparent;
+  background-image: url("../assets/images/textures/.png"); }
+  .empty:before, .empty:after {
+    content: "";
+    position: absolute;
+    width: inherit;
+    height: 0em;
+    background-image: url("../assets/images/textures/.png");
+    background-blend-mode: soft-light;
+    background-size: contain;
+    background-position: 0% 100%;
+    background-repeat: repeat;
+    transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+  .empty:before {
+    background-color: rgba(26, 25, 25, 0);
+    transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+    transform-origin: 50% 0%; }
+  .empty:after {
+    background-color: transparent;
+    transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+    transform-origin: -50% 0%; }
+
+.desert {
+  background: linear-gradient(#ddfae8, #b1f3c9); }
+  .desert .ground {
+    background-color: #EEE27E;
+    transform: translate3d(0, 0, 1em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #EEE27E;
+    background-image: url("../assets/images/textures/sand.png"); }
+    .desert .ground:before, .desert .ground:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 1em;
+      background-image: url("../assets/images/textures/sand.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .ground:before {
+      background-color: #f4ecab;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .ground:after {
+      background-color: #e8d851;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .doorway {
+    background-color: #EEE27E;
+    transform: translate3d(0, 0, 0em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #EEE27E;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .desert .doorway:before, .desert .doorway:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 0em;
+      background-image: url("../assets/images/textures/sand.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .doorway:before {
+      background-color: #f4ecab;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .doorway:after {
+      background-color: #e8d851;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .wall {
+    background-color: #B2AC7C;
+    transform: translate3d(0, 0, 2em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #B2AC7C;
+    background-image: url("../assets/images/textures/roof.png"); }
+    .desert .wall:before, .desert .wall:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 2em;
+      background-image: url("../assets/images/textures/hut.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .wall:before {
+      background-color: #c5c09c;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .wall:after {
+      background-color: #9e975d;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .tower {
+    background-color: #8e8853;
+    transform: translate3d(0, 0, 4em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #8e8853;
+    background-image: url("../assets/images/textures/roof.png"); }
+    .desert .tower:before, .desert .tower:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 4em;
+      background-image: url("../assets/images/textures/wood_door2.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .tower:before {
+      background-color: #a9a26c;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .tower:after {
+      background-color: #6e6941;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .spire {
+    background-color: #B2AC7C;
+    transform: translate3d(0, 0, 6em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #B2AC7C;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .desert .spire:before, .desert .spire:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 6em;
+      background-image: url("../assets/images/textures/tower.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .spire:before {
+      background-color: #c5c09c;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .spire:after {
+      background-color: #9e975d;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .monolith {
+    background-color: #F3F4F7;
+    transform: translate3d(0, 0, 8em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #F3F4F7;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .desert .monolith:before, .desert .monolith:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 8em;
+      background-image: url("../assets/images/textures/column.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .monolith:before {
+      background-color: white;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .monolith:after {
+      background-color: #d4d8e3;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .megalith {
+    background-color: #FFD700;
+    transform: translate3d(0, 0, 10em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #FFD700;
+    background-image: url("../assets/images/textures/spiral.png"); }
+    .desert .megalith:before, .desert .megalith:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 10em;
+      background-image: url("../assets/images/textures/ionic.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .megalith:before {
+      background-color: #ffdf33;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .megalith:after {
+      background-color: #ccac00;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .player {
+    background-color: #95BEAD;
+    transform: translate3d(0, 0, );
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #95BEAD;
+    background-image: url("../assets/images/textures/circle.png"); }
+    .desert .player:before, .desert .player:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      background-image: url("../assets/images/textures/wood_ver.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .desert .player:before {
+      background-color: #b5d1c5;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .desert .player:after {
+      background-color: #75ab95;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .desert .atmosphere {
+    width: 200%;
+    height: 100%;
+    background: url("../assets/images/textures/dust3.png") repeat;
+    background-size: 150px;
+    animation: scrollX 20s linear infinite; }
+
+@keyframes scrollX {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    transform: translate3d(-50%, 0, 0); } }
+  .desert + .day-counter,
+  .desert ~ .bottom-left {
+    color: #655c4d; }
+
+.forest {
+  background: linear-gradient(to top, #135359, #03d7c7); }
+  .forest .ground {
+    background-color: #60d3aa;
+    transform: translate3d(0, 0, 1em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #60d3aa;
+    background-image: url("../assets/images/textures/sand.png"); }
+    .forest .ground:before, .forest .ground:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 1em;
+      background-image: url("../assets/images/textures/sand.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .ground:before {
+      background-color: #88debf;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .ground:after {
+      background-color: #38c894;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .doorway {
+    background-color: #88DEBF;
+    transform: translate3d(0, 0, 0em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #88DEBF;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .forest .doorway:before, .forest .doorway:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 0em;
+      background-image: url("../assets/images/textures/sand.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .doorway:before {
+      background-color: #b0e9d4;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .doorway:after {
+      background-color: #60d3aa;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .wall {
+    background-color: #67AC9A;
+    transform: translate3d(0, 0, 2em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #67AC9A;
+    background-image: url("../assets/images/textures/ivy.png"); }
+    .forest .wall:before, .forest .wall:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 2em;
+      background-image: url("../assets/images/textures/ivy_hut.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .wall:before {
+      background-color: #88beb0;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .wall:after {
+      background-color: #4f9180;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .tower {
+    background-color: #95BEAD;
+    transform: translate3d(0, 0, 4em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #95BEAD;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .forest .tower:before, .forest .tower:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 4em;
+      background-image: url("../assets/images/textures/wood_hor.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .tower:before {
+      background-color: #b5d1c5;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .tower:after {
+      background-color: #75ab95;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .spire {
+    background-color: #7BA7A5;
+    transform: translate3d(0, 0, 6em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #7BA7A5;
+    background-image: url("../assets/images/textures/squares_light.png"); }
+    .forest .spire:before, .forest .spire:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 6em;
+      background-image: url("../assets/images/textures/brick.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .spire:before {
+      background-color: #9abbba;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .spire:after {
+      background-color: #608f8d;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .monolith {
+    background-color: #c1d6d5;
+    transform: translate3d(0, 0, 8em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #c1d6d5;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .forest .monolith:before, .forest .monolith:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 8em;
+      background-image: url("../assets/images/textures/column.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .monolith:before {
+      background-color: #e0eaea;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .monolith:after {
+      background-color: #a3c2c0;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .megalith {
+    background-color: #FFD700;
+    transform: translate3d(0, 0, 10em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #FFD700;
+    background-image: url("../assets/images/textures/spiral.png"); }
+    .forest .megalith:before, .forest .megalith:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 10em;
+      background-image: url("../assets/images/textures/ionic.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .megalith:before {
+      background-color: #ffdf33;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .megalith:after {
+      background-color: #ccac00;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .player {
+    background-color: #B2AC7C;
+    transform: translate3d(0, 0, );
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #B2AC7C;
+    background-image: url("../assets/images/textures/circle.png"); }
+    .forest .player:before, .forest .player:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      background-image: url("../assets/images/textures/wood_ver.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .forest .player:before {
+      background-color: #c5c09c;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .forest .player:after {
+      background-color: #9e975d;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .forest .atmosphere {
+    width: 100%;
+    height: 200%;
+    background: url("../assets/images/textures/dust_white.png") repeat;
+    background-size: 200px;
+    opacity: 0.2;
+    animation: scrollY 20s linear infinite; }
+
+@keyframes scrollY {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    transform: translate3d(0, -50%, 0); } }
+  .forest ~ .bottom-left,
+  .forest ~ .bottom-left .link,
+  .forest ~ .day-counter {
+    color: #fff; }
+
+.interior {
+  background: #37314a; }
+  .interior .ground {
+    background-color: #8e8853;
+    transform: translate3d(0, 0, 1em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #8e8853;
+    background-image: url("../assets/images/textures/wood_ver.png"); }
+    .interior .ground:before, .interior .ground:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 1em;
+      background-image: url("../assets/images/textures/wood_ver.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .interior .ground:before {
+      background-color: #a9a26c;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .interior .ground:after {
+      background-color: #6e6941;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .interior .doorway {
+    background-color: #8e8853;
+    transform: translate3d(0, 0, 0em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #8e8853;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .interior .doorway:before, .interior .doorway:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 0em;
+      background-image: url("../assets/images/textures/wood_hor.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .interior .doorway:before {
+      background-color: #a9a26c;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .interior .doorway:after {
+      background-color: #6e6941;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .interior .wall {
+    background-color: #655c4d;
+    transform: translate3d(0, 0, 2em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #655c4d;
+    background-image: url("../assets/images/textures/sand.png"); }
+    .interior .wall:before, .interior .wall:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 2em;
+      background-image: url("../assets/images/textures/sand.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .interior .wall:before {
+      background-color: #827663;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .interior .wall:after {
+      background-color: #484237;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .interior .tower {
+    background-color: #8e8853;
+    transform: translate3d(0, 0, 4em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #8e8853;
+    background-image: url("../assets/images/textures/roof.png"); }
+    .interior .tower:before, .interior .tower:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 4em;
+      background-image: url("../assets/images/textures/wood_door2.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .interior .tower:before {
+      background-color: #a9a26c;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .interior .tower:after {
+      background-color: #6e6941;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .interior .spire {
+    background-color: #7B8AA7;
+    transform: translate3d(0, 0, 6em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #7B8AA7;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .interior .spire:before, .interior .spire:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 6em;
+      background-image: url("../assets/images/textures/brick.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .interior .spire:before {
+      background-color: #9aa5bb;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .interior .spire:after {
+      background-color: #60708f;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .interior .monolith {
+    background-color: #F3F4F7;
+    transform: translate3d(0, 0, 8em);
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #F3F4F7;
+    background-image: url("../assets/images/textures/ornate.png"); }
+    .interior .monolith:before, .interior .monolith:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      height: 8em;
+      background-image: url("../assets/images/textures/column.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .interior .monolith:before {
+      background-color: white;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .interior .monolith:after {
+      background-color: #d4d8e3;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+  .interior .player {
+    background-color: #95BEAD;
+    transform: translate3d(0, 0, );
+    transform-style: preserve-3d;
+    animation-fill-mode: forwards;
+    transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+    background-blend-mode: soft-light;
+    background-size: 100%;
+    background-color: #95BEAD;
+    background-image: url("../assets/images/textures/circle.png"); }
+    .interior .player:before, .interior .player:after {
+      content: "";
+      position: absolute;
+      width: inherit;
+      background-image: url("../assets/images/textures/wood_ver.png");
+      background-blend-mode: soft-light;
+      background-size: contain;
+      background-position: 0% 100%;
+      background-repeat: repeat;
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+    .interior .player:before {
+      background-color: #b5d1c5;
+      transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+      transform-origin: 50% 0%; }
+    .interior .player:after {
+      background-color: #75ab95;
+      transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+      transform-origin: -50% 0%; }
+
+.goal {
+  background-color: #7658FF;
+  transform: translate3d(0, 0, );
+  transform-style: preserve-3d;
+  animation-fill-mode: forwards;
+  transition: height 0.5s cubic-bezier(0, 0, 0, 1), transform 0.5s cubic-bezier(0, 0, 0, 1);
+  background-blend-mode: soft-light;
+  background-size: 100%;
+  background-color: #7658FF;
+  background-image: url("../assets/images/textures/sand.png"); }
+  .goal:before, .goal:after {
+    content: "";
+    position: absolute;
+    width: inherit;
+    background-image: url("../assets/images/textures/sand.png");
+    background-blend-mode: soft-light;
+    background-size: contain;
+    background-position: 0% 100%;
+    background-repeat: repeat;
+    transition: all 0.5s cubic-bezier(0, 0, 0, 1); }
+  .goal:before {
+    background-color: #a08bff;
+    transform: rotateX(-90deg) rotateY(0deg) translate3d(-50%, 0, 0);
+    transform-origin: 50% 0%; }
+  .goal:after {
+    background-color: #4c25ff;
+    transform: rotateX(-90deg) rotateY(90deg) translate3d(-150%, 0%, 0px);
+    transform-origin: -50% 0%; }
+
+.atmosphere {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  opacity: 0.5;
+  pointer-events: none; }
