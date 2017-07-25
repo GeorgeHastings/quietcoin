@@ -1,91 +1,136 @@
 'use strict';
 
-var UI = {
-  scrolling: false,
-  currentTop: 0,
-  resourcesOpen: false,
-  questionFlow: {
-    signposts: document.querySelectorAll('.signpost li'),
-    questions: document.querySelectorAll('.question'),
-    index: 0,
-    enableButton: function() {
-      document.getElementById('nextQuestion').removeAttribute('disabled');
-    },
-    nextQuestion: function() {
-      UI.questionFlow.questions[UI.questionFlow.index].style.display = 'none';
-      UI.questionFlow.index++;
-      UI.questionFlow.questions[UI.questionFlow.index].style.display = 'block';
-      document.getElementById('nextQuestion').setAttribute('disabled', true);
-      UI.questionFlow.updateSignPost();
-      UI.repaint();
-    },
-    prevQuestion: function() {
-      UI.questionFlow.questions[UI.questionFlow.index].style.display = 'none';
-      UI.questionFlow.index--;
-      UI.questionFlow.questions[UI.questionFlow.index].style.display = 'block';
-      document.getElementById('nextQuestion').removeAttribute('disabled');
-      UI.questionFlow.updateSignPost();
-      UI.repaint();
-    },
-    updateSignPost: function() {
-      for (var i = 0; i < UI.questionFlow.signposts.length; i++) {
-        UI.questionFlow.signposts[i].classList.remove('active');
-      }
-      UI.questionFlow.signposts[UI.questionFlow.index].classList.add('active');
-    }
-  },
-  toggleResources: function() {
-    if(UI.resourcesOpen) {
-      document.getElementById('dropdownResources').classList.remove('open');
-      UI.resourcesOpen = false;
-    }
-    else {
-      document.getElementById('dropdownResources').classList.add('open');
-      UI.resourcesOpen = true;
-    }
-  },
-  autoHideHeader: function() {
-    var currentTop = document.body.scrollTop;
-    var scrollingDown = currentTop > UI.previousTop;
-    if(scrollingDown) {
-      document.getElementById('header').classList.add('hidden');
-    }
-    else {
-      document.getElementById('header').classList.remove('hidden');
-    }
-    UI.previousTop = currentTop;
-    UI.scrolling = false;
-  },
-  showHideHeader: function() {
-    if(!UI.scrolling) {
-      UI.scrolling = true;
-      (!window.requestAnimationFrame) ? setTimeout(UI.autoHideHeader, 250) : requestAnimationFrame(UI.autoHideHeader);
-    }
-  },
-  repaint: function() {
-    var classname = '_loadin';
-    var elements = document.querySelectorAll('.'+classname);
-    for(var i = 0; i < elements.length; i++) {
-      elements[i].classList.remove(classname);
-      console.log(elements[i].offsetWidth);
-      elements[i].classList.add(classname);
-    }
-  },
-  bindToMany: function(elements, eventType, fn) {
-    var els = document.querySelectorAll(elements);
-    for(var i = 0; i < els.length; i++) {
-      els[i][eventType] = fn;
-    }
-  },
-  bindEvents: function() {
-    document.getElementById('resourcesLink').onclick = UI.toggleResources;
-    window.onscroll = UI.showHideHeader;
-    if (document.getElementById('nextQuestion'), document.getElementById('prevQuestion')) {
-      document.getElementById('nextQuestion').onclick = UI.questionFlow.nextQuestion;
-      document.getElementById('prevQuestion').onclick = UI.questionFlow.prevQuestion;
-      UI.bindToMany('input[type="radio"]', 'onchange', UI.questionFlow.enableButton);
-    }
-  }
+var rainbow = new Pizazz({
+  size: 20,
+  buffer: 10,
+  spacing: 20,
+  speed: 1,
+  strokeWidth: 2,
+  stroke: '#FF356A'
+});
+
+var showT;
+
+var showToaster = function(content, duration) {
+  var toaster = document.querySelector('.toaster');
+  clearTimeout(showT);
+  toaster.innerText = content;
+  toaster.classList.add('show');
+  showT = setTimeout(function() {
+    toaster.classList.remove('show');
+  }, duration);
 };
 
-UI.bindEvents();
+var copyToClipboard = function(content) {
+  var getInput = function() {
+    var input = document.querySelector('#copyInput');
+    if(input === null) {
+      input = document.createElement('textarea');
+      input.setAttribute('id', 'copyInput');
+      input.setAttribute('style', 'position: absolute; left: -999em;');
+      document.body.appendChild(input);
+    }
+    else {
+      input.style.position = 'absolute';
+      input.style.left = '-999em';
+    }
+    return input;
+  };
+  var input = getInput();
+  input.value = content;
+  input.select();
+  document.execCommand('copy');
+};
+
+var playRainbow = function(event) {
+  rainbow.play(event.target);
+};
+
+var bindEvents = function() {
+  document.querySelector('.email').onclick = function() {
+    copyToClipboard('g.hastings3@gmail.com');
+    showToaster('Copied to clipboard.', 3000);
+    rainbow.play(this);
+  };
+
+  // var fauxLinks = document.querySelectorAll('a');
+  // fauxLinks.forEach(function(link){
+  //   link.onclick = fakeAjaxPageLoad;
+  // });
+};
+
+var lazyLoadElements = function(direction, amt) {
+  var itemsToRender = [...document.querySelectorAll('.lazy-load')];
+  var delay = amt ? amt : 2000;
+  setTimeout(function() {
+    if(direction === 'in') {
+      document.getElementById('move_text').classList.add('muted');
+    }
+    else{
+      document.getElementById('move_text').classList.remove('muted');
+    }
+    for(var item of itemsToRender) {
+      item.classList.add('show');
+      if(direction === 'in') {
+        item.classList.add('show');
+      }
+      else{
+        item.classList.remove('show');
+      }
+    }
+  }, delay);
+};
+
+var renderCopyrightYear = function() {
+  var date = new Date();
+  var year = date.getYear();
+  document.getElementById('copyright').innerHTML = `${1900 + year}`;
+};
+
+var genRandomFloat = function(min, max) {
+  return Math.random() * (max - min) + min;
+};
+
+var fakeAjaxPageLoad = function(e) {
+  const link = e.target.getAttribute('href');
+  e.preventDefault();
+  playRainbow(e);
+  setTimeout(function() {
+    window.location = link;
+  }, 500);
+  return false;
+};
+
+var initMovingText = function() {
+  var el = document.getElementById('move_text').querySelector('.nt-inner');
+  var text = [...el.innerHTML.toString()];
+  el.innerHTML = '';
+  var frag = document.createDocumentFragment();
+  text.forEach(function(char){
+    const span = document.createElement('span');
+    span.setAttribute('data-magnetic', genRandomFloat(-0.1, 0.1));
+    if(char === '-') {
+      char = document.createElement('img');
+      char.setAttribute('src', 'assets/images/selfportrait.png');
+      span.appendChild(char);
+    }
+    else {
+      span.innerText = char;
+    }
+    frag.appendChild(span);
+  });
+  el.appendChild(frag);
+  Magnetic.init({
+    repel: false
+  });
+};
+
+var init = function() {
+  // lazyLoadElements('in', 0);
+  initMovingText();
+  // getBitcoinPrice();
+  renderCopyrightYear();
+  bindEvents();
+};
+
+init();
