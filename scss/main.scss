@@ -474,8 +474,10 @@ footer,
 
 .project {
   position: relative;
-  width: 50%;
-  margin-bottom: 2em;
+  width: 100%;
+  // margin-bottom: 2em;
+  padding: 1em 0;
+  border-top: 1px solid $fill;
   border-radius: 2px;
 
   .code {
@@ -486,7 +488,7 @@ footer,
 
   a {
     // width: 100%;
-    font-size: 2em;
+    // font-size: 2em;
 
     &:hover {
       & + .bg-fill {
@@ -586,7 +588,7 @@ footer {
   }
 
   section {
-    padding-top: 1em;
+    padding: 1em;
   }
 
   p {

@@ -334,18 +334,17 @@ footer,
 
 .project {
   position: relative;
-  width: 50%;
-  margin-bottom: 2em;
+  width: 100%;
+  padding: 1em 0;
+  border-top: 1px solid #2C4263;
   border-radius: 2px; }
   .project .code {
     background-color: transparent;
     font-size: 0.7em;
     color: #fff; }
-  .project a {
-    font-size: 2em; }
-    .project a:hover + .bg-fill {
-      opacity: 1;
-      transform: translate3d(75%, 0%, 0) rotateZ(15deg) scale(1); }
+  .project a:hover + .bg-fill {
+    opacity: 1;
+    transform: translate3d(75%, 0%, 0) rotateZ(15deg) scale(1); }
   .project .bg-fill {
     position: absolute;
     bottom: 0;
@@ -420,7 +419,7 @@ footer {
     .modal:target + .outside-click-cancel {
       display: block; }
   .modal section {
-    padding-top: 1em; }
+    padding: 1em; }
   .modal p {
     width: 100%;
     margin-bottom: 2em; }
