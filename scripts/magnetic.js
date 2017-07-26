@@ -22,8 +22,6 @@ var Magnetic = {
       speed = Magnetic.repel ? speed * -1 : speed;
       var adjusetedX = (speed*Magnetic.getX(event)).toFixed(0);
       var adjusetedY = (speed*Magnetic.getY(event)).toFixed(0);
-      // var rotation = (adjusetedX * 0.1).toFixed(0);
-      var opacity = 1 - (adjusetedY * 0.1).toFixed(0);
       var transform = `transform: translate3d(${adjusetedX}px,${adjusetedY}px,0)`;
       el.setAttribute('style', transform);
     }

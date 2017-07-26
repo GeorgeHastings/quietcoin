@@ -59,28 +59,6 @@ var bindEvents = function() {
   // });
 };
 
-var lazyLoadElements = function(direction, amt) {
-  var itemsToRender = [...document.querySelectorAll('.lazy-load')];
-  var delay = amt ? amt : 2000;
-  setTimeout(function() {
-    if(direction === 'in') {
-      document.getElementById('move_text').classList.add('muted');
-    }
-    else{
-      document.getElementById('move_text').classList.remove('muted');
-    }
-    for(var item of itemsToRender) {
-      item.classList.add('show');
-      if(direction === 'in') {
-        item.classList.add('show');
-      }
-      else{
-        item.classList.remove('show');
-      }
-    }
-  }, delay);
-};
-
 var renderCopyrightYear = function() {
   var date = new Date();
   var year = date.getYear();
@@ -127,10 +105,105 @@ var initMovingText = function() {
 
 var init = function() {
   // lazyLoadElements('in', 0);
-  initMovingText();
-  // getBitcoinPrice();
+  // initMovingText();
+  // Magnetic.init({
+  //   repel: false
+  // });
+  initCanvasJawn();
   renderCopyrightYear();
   bindEvents();
+};
+
+var initCanvasJawn = function() {
+  const canvas = document.getElementById('jawn');
+  const dpr = window.devicePixelRatio || 1;
+  const ctx = canvas.getContext('2d');
+  const fps = 60;
+  const POLY = 45;
+  const STEP = 2*Math.PI/POLY;
+  const LENGTH = 2 * Math.PI;
+  const CENTER = {
+    x: canvas.width/4,
+    y: canvas.height/4
+  };
+  let startingTheta = 0;
+  let radius = 140;
+  let count = 1000;
+  let ampX = 1;
+  let ampY = 1;
+
+  ctx.scale(dpr,dpr);
+  // let ij;
+  //
+  // document.body.onmousedown = function(e) {
+  //   count = 2000;
+  //   radius = 105;
+  //   ampX = 3;
+  //   ampY = 3;
+  // };
+  // document.body.onmouseup = function() {
+  //   count = 2000;
+  //   radius = 140;
+  //   ampY = 1;
+  //   ampX = 1;
+  // };
+  // document.body.onmousemove = function(e) {
+  //   count += 1;
+  // };
+
+  var myGrad = ctx.createRadialGradient(canvas.height/4, canvas.height/4, canvas.height/4, canvas.height/4, canvas.height/1.5, 0);
+  myGrad.addColorStop(1,'#6915EF');
+  myGrad.addColorStop(0.33, '#FF356A');
+  myGrad.addColorStop(0,'#F8D451');
+
+  ctx.strokeStyle = 'transparent';
+
+  var draw = function() {
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    ctx.beginPath();
+
+    for(let theta = startingTheta;  theta < LENGTH;  theta += STEP) {
+      let x = CENTER.x + radius * Math.cos(theta) + (Math.sin((count)/(LENGTH + STEP*theta)))*ampX;
+      let y = CENTER.y - radius * Math.sin(theta) + (Math.sin((count)/(LENGTH - STEP*theta)))*ampY;
+      ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = myGrad;
+    ctx.fill();
+  	ctx.stroke();
+  };
+
+  // var draw = function() {
+  //   animate();
+  //   count++;
+  // };
+
+  function resizeCanvas() {
+  	// canvas.width = window.innerWidth;
+  	// canvas.height = window.innerHeight
+  }
+
+  (function(){
+  	var now;
+  	var then = Date.now();
+  	var interval = 1000/fps;
+  	var delta;
+  	function tick() {
+
+  			now = Date.now();
+  			delta = now - then;
+
+  			if (delta > interval) {
+  					then = now - (delta % interval);
+            count++;
+  					draw();
+  			}
+  			requestAnimationFrame(tick);
+  	}
+  	window.addEventListener('resize', resizeCanvas, false);
+  	resizeCanvas();
+  	tick();
+  })();
 };
 
 init();
