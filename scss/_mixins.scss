@@ -1,0 +1,55 @@
+@mixin gradBG($duration) {
+  background: linear-gradient(to left, $froly, DodgerBlue, $brighttourquoise, yellow, $froly);
+  background-size: 300% 300%;
+  animation: animateGlow $duration linear infinite;
+
+  @keyframes animateGlow {
+    0%{background-position:150% 50%}
+    100%{background-position:-150% 50%}
+  }
+}
+
+@mixin buzzword($color) {
+    &:before {
+      content: attr(data-buzzword);
+      // font-size: 2em;
+      text-transform: uppercase;
+      color: $color;
+      text-align: center;
+      margin-right: 5px;
+      animation: blink 0.3s steps(3) infinite alternate;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+}
+
+@mixin faux-link($color) {
+  color: inherit;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(180deg,transparent 65%, $color 0);
+  transition: background-size .25s ease;
+  background-size: 0% 100%;
+
+  border-bottom: 1px solid $color;
+
+  &:hover {
+    cursor: pointer;
+    background-size: 100% 100%;
+    background-image: linear-gradient(180deg,transparent 65%, $color 0);
+
+    & ~ .meta-data {
+      color: $fill;
+    }
+  }
+}

@@ -2,92 +2,31 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>George Hastings - Product Designer</title>
-		<meta name="description" content="I'm a product designer passionate about solving problems from strategic direction to meticulous detail.">
+		<title>Quiet Coin</title>
+		<meta name="description" content="Paid2BOffline.">
 		<link rel="stylesheet" href="css/main.css" media="screen">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 	</head>
-	<body class="home-colors">
+	<body>
 		<div id="app" class="wrapper">
-			<header><a href="index.html">George Hastings</a><a href="#aboutme">About</a></header>
-			<div class="neat-thing" id="move_text">
-					<div class="nt-inner">makes/things/on/the/internet</div>
+			<div class="offline-counter">
+				<div class="connection" data-buzzword="•"></div>
+				<div id="timer" class="timer"></div>
 			</div>
-			<section class="intro lazy-load">
-				<h3>Ahoy there <span style="font-family: Arial">&mdash;</span></h3>
-				<p>I'm a product designer passionate about solving problems from strategic direction to meticulous detail.</p>
-			</section>
-			<section class="projects">
-					<div class="project">
-						<a href="khroma.html" class="faux-link">Using machine learning to create a better color tool for designers.</a>
-						<img class="bg-fill" src="assets/images/khroma_thumb.png">
-						<span class="meta-data code">Case study / Personal</span>
-					</div>
-					<div class="project">
-						<a href="rome.html" class="faux-link">Prototyping a behavior change app to help quit smoking.</a>
-						<img class="bg-fill" src="assets/images/rome_thumb.png">
-						<span class="meta-data code">Case study / Personal</span>
-					</div>
-					<div class="project">
-						<a href="floodhelp.html" class="faux-link">Helping New Yorkers to become more flood resilient.</a>
-						<img class="bg-fill" src="assets/images/floodhelp.png">
-						<span class="meta-data code">Project / IDEO</span>
-					</div>
-					<div class="project">
-						<a href="http://georgehastings.github.io/EON_RPG/" class="faux-link">EON: The text based RPG game in need of a writer.</a>
-						<img class="bg-fill" src="assets/images/eon.png">
-						<span class="meta-data code">Link / Personal</span>
-					</div>
-			</section>
-			<footer>
-				<div class="copyright">© <span id="copyright"></span> <a href="index.html">George Hastings</a></div>
-				<div class="courtesy">
-					<div class="email faux-link">Email me</div>
-					<a class="faux-link" href="http://www.codepen.io/georgehastings">Codepen</a>
-					<a class="faux-link" href="http://www.github.com/georgehastings">Github</a>
-					<a class="faux-link" href="https://www.linkedin.com/in/george-hastings-a6874514/">LinkedIn</a>
-				</div>
-			</footer>
+			<div class="graph-container">
+				<div class="indicator" data-time="2:42"></div>
+				<canvas id="plot" height="100" width="190"></canvas>
+			</div>
+			<div class="info">
+				<div class="item">QIT/sec: <span class="token-multiplier">0<span></div>
+					<div class="item">QIT/min: <span class="token-rate">0<span></div>
+				<div class="item">ACCRUED: <span class="token-accrued">0<span></div>
+			</div>
 		</div>
-		<div id="aboutme" class="modal">
-			<a class="cancel" href="#">Close</a>
-			<section class="experience">
-				<p>Im a multidisciplinary digital designer excited about creating smart and effective digital experiences which balance business and user needs. I try to be empathetic, rigorous, and always questioning. Most of my free time goes to experimenting with machine learning, building fun side projects, and getting inspired.</p>
-				<div class="clientlist grid-list">
-					<ul>
-						<li class="list-header">UxD @ AREA 17</li>
-						<li>ESPN</li>
-						<li>Quartz</li>
-						<li>Charlie Rose</li>
-						<li>Style.com</li>
-						<li>Advertising Age</li>
-						<li>Billboard</li>
-						<li>The Webby Awards</li>
-						<li>Samsung</li>
-						<li>Facebook</li>
-						<li>Google</li>
-						<li>...</li>
-					</ul>
-					<ul>
-						<li class="list-header buzzword" data-buzzword="Now">Sr. IxD @ IDEO</li>
-						<li class="redacted" data-char-count="########"></li>
-						<li class="redacted" data-char-count="################"></li>
-						<li>FloodHelpNY.org</li>
-						<li>The U.S. State Dept.</li>
-						<li class="redacted" data-char-count="####"></li>
-						<li class="redacted" data-char-count="##############"></li>
-						<li>...</li>
-					</ul>
-				</div>
-			</section>
-		</div>
-		<a class="outside-click-cancel" href="#"></a>
-		<div class="toaster"></div>
-		<canvas id="jawn" width="600" height="600"></canvas>
-		<script src="/scripts/magnetic.js"></script>
-		<script src="/scripts/pizazz.js"></script>
-		<script src="/scripts/tippet.js"></script>
-		<script src="/scripts/app.js"></script>
+		<div class="toaster show"></div>
+		<script src="scripts/pizazz.js"></script>
+		<script src="scripts/tippet.js"></script>
+		<script src="scripts/app.js"></script>
 	</body>
 </html>

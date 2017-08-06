@@ -1,1 +1,1 @@
-"use strict";
+"use strict";var rainbow=new Pizazz({size:20,buffer:10,spacing:20,speed:1,strokeWidth:2,stroke:"#FF356A"}),showT,showToaster=function(e,i){var n=document.querySelector(".toaster");clearTimeout(showT),n.innerText=e,n.classList.add("show"),showT=setTimeout(function(){n.classList.remove("show")},i)},initOnline=function(){showToaster("Online",4e3)},initOffline=function(){showToaster("Offline",4e3)};!function(){window.navigator.onLine?initOnline():initOffline()}();
