@@ -1,7 +1,7 @@
 'use strict';
 
 const height = 100;
-const width = 250;
+const width = 300;
 const $indicator = document.querySelector('.indicator');
 const $tokenMultiplier = document.querySelector('.token-multiplier');
 const $tokenRate = document.querySelector('.token-rate');
@@ -145,12 +145,14 @@ var checkConnection = function() {
     showToaster('Offline', 4000, 'good');
     $connection.classList = 'connection on';
     $connection.innerText = 'Offline';
+    document.body.classList = 'offline';
     stopwatch.start();
   }
   else if(stopwatch.running && connection) {
     showToaster('Online', 4000, 'bad');
     $connection.classList = 'connection off';
     $connection.innerText = 'Online';
+    document.body.classList = 'online';
     stopwatch.stop();
   }
   requestAnimationFrame(checkConnection);

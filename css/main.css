@@ -34,20 +34,28 @@ body {
 body {
   display: flex;
   height: 100vh;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   text-align: left;
   font-family: "Roboto Mono", monospace;
   font-size: 20px;
-  color: white;
-  background-color: #20212B;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased; }
+  body.offline {
+    color: white;
+    background-color: #20212B; }
+  body.online {
+    color: #20212B;
+    background-color: white; }
 
 a {
   color: inherit;
   text-decoration: none;
   line-height: 1.55em; }
+
+.wrapper {
+  max-width: 500px;
+  padding: 2em; }
 
 .connection {
   font-size: 0.6em;
@@ -85,11 +93,10 @@ a {
 
 .timer {
   font-family: "Roboto Mono", monospace;
-  font-size: 2em;
-  color: white; }
+  font-size: 2em; }
 
 .graph-container {
-  width: 250px;
+  width: 300px;
   position: relative;
   margin-top: 2em; }
   .graph-container .indicator {
@@ -98,9 +105,8 @@ a {
     width: 4px;
     margin-top: -4px;
     border-radius: 50%;
-    background-color: white;
-    font-size: 0.5em;
-    color: white; }
+    background-color: currentColor;
+    font-size: 0.5em; }
     .graph-container .indicator:after {
       content: attr(data-time);
       position: absolute;
@@ -112,7 +118,6 @@ a {
   text-align: left; }
 
 .item {
-  color: white;
   font-size: 0.7em;
   line-height: 2;
   border-bottom: 1px solid #525568; }
@@ -142,7 +147,7 @@ a {
     background-color: #0fffc1;
     color: #20212B; }
   .toaster.off {
-    background-color: #363748;
+    background-color: #525568;
     color: white; }
   .toaster.show {
     transform: translate3d(0, 30px, 0);

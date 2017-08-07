@@ -49,15 +49,23 @@ body {
 body {
   display: flex;
   height: 100vh;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   text-align: left;
 	font-family: $monospace;
 	font-size: 20px;
-  color: white;
-  background-color: $black;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
+
+  &.offline {
+    color: white;
+    background-color: $black;
+  }
+
+  &.online {
+    color: $black;
+    background-color: white;
+  }
 }
 
 a {
@@ -67,7 +75,8 @@ a {
 }
 
 .wrapper {
-  // overflow-x: hidden;
+  max-width: 500px;
+  padding: 2em;
 }
 
 .connection {
@@ -85,11 +94,11 @@ a {
 .timer {
   font-family: $monospace;
   font-size: 2em;
-  color: white;
+  // color: white;
 }
 
 .graph-container {
-  width: 250px;
+  width: 300px;
   position: relative;
   margin-top: 2em;
 
@@ -99,9 +108,9 @@ a {
     width: 4px;
     margin-top: -4px;
     border-radius: 50%;
-    background-color: white;
+    background-color: currentColor;
     font-size: 0.5em;
-    color: white;
+    // color: white;
 
     &:after {
       content: attr(data-time);
@@ -118,7 +127,7 @@ a {
 }
 
 .item {
-  color: white;
+  // color: white;
   font-size: 0.7em;
   line-height: 2;
   border-bottom: 1px solid $comet;
@@ -156,7 +165,7 @@ a {
   }
 
   &.off {
-    background-color: lighten($black, 10%);
+    background-color: $comet;
     color: white;
   }
 
