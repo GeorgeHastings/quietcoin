@@ -169,6 +169,7 @@ var getCurrentTime = function() {
     let progress = ((convertedTime/12)*100).toFixed(1);
     let tokenMultiplier = predictRewardMultiplier(convertedTime);
     $indicator.setAttribute('style', `left: ${progress}%; top: ${((1 - tokenMultiplier)*100).toFixed(1)}%`);
+    minutes = minutes < 10 ? '0'+minutes : minutes;
     $indicator.setAttribute('data-time', `${hours}:${minutes}`);
     $tokenMultiplier.innerText = tokenMultiplier * 0.1;
     $tokenRate.innerText = tokenMultiplier *60 * 0.1;
