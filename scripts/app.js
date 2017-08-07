@@ -163,7 +163,7 @@ var getCurrentTime = function() {
   let hours = now.getHours();
   let minutes = now.getMinutes();
   let millis = now.getMilliseconds()/1000;
-  let convertedTime = (hours - 8) + minutes/60 + millis;
+  let convertedTime = (hours - 6) + minutes/60 + millis;
   let inActiveHours = convertedTime >= 0 && convertedTime < 12;
   if(inActiveHours) {
     let progress = ((convertedTime/12)*100).toFixed(1);
@@ -184,6 +184,7 @@ var getCurrentTime = function() {
     showToaster('After hours', 4000, 'off');
     $connection.classList = 'connection off';
     $connection.innerText = 'After hours';
+    document.body.classList = 'offline';
     $indicator.setAttribute('style', 'display: none;');
   }
 };
