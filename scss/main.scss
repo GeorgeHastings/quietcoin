@@ -30,12 +30,10 @@
 }
 
 ::-moz-selection {
-  background: $fill;
-  color: $accent;
+  background: #AAA;
 }
 ::selection {
-  background: $fill;
-  color: $accent;
+  background: #AAA;
 }
 
 html,
@@ -53,7 +51,7 @@ body {
   justify-content: flex-start;
   text-align: left;
 	font-family: $monospace;
-	font-size: 20px;
+	font-size: 14px;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   transition: all 0.5s ease;
@@ -61,6 +59,14 @@ body {
   &.offline {
     color: white;
     background-color: $black;
+
+    svg path {
+      fill: white;
+    }
+
+    svg text {
+      color: white;
+    }
   }
 
   &.online {
@@ -76,13 +82,79 @@ a {
 }
 
 .wrapper {
-  max-width: 500px;
-  padding: 2em;
+  // padding: 4em;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  padding: 2em 4em;
+}
+
+header {
+  width: 100%;
+  padding: 2em 4em;
+
+  svg {
+    width: 100px;
+    // height: 30px;
+  }
+}
+
+.coin-profile-container {
+  margin-right: 4em;
+  width: 300px;
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    padding: 2em 2em;
+  }
+
+  .content-container {
+    padding: 2em 2em;
+  }
+
+  .coin-profile-container {
+    width: 100%;
+  }
+}
+
+.marketplace-container {
+  width: 100%;
+  min-width: 500px;
+  font-size: 1em;
+  font-weight: 200;
+
+  h3 {
+    margin-top: 0;
+    font-size: 0.85em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: block;
+    border-bottom: 1px solid $comet;
+    padding: 1em 0;
+    line-height: 2;
+
+    &:first-child {
+      border-top: 1px solid $comet;
+    }
+  }
 }
 
 .connection {
-  font-size: 0.6em;
+  font-size: 0.85em;
   text-transform: uppercase;
+  margin-bottom: 1em;
 
   &.on {
     @include buzzword($brighttourquoise);
@@ -110,7 +182,7 @@ a {
     margin-top: -4px;
     border-radius: 50%;
     background-color: currentColor;
-    font-size: 0.5em;
+    font-size: 0.7em;
     // color: white;
 
     &:after {
@@ -129,8 +201,9 @@ a {
 
 .item {
   // color: white;
-  font-size: 0.7em;
+  font-size: 1em;
   line-height: 2;
+  padding: 1em 0;
   border-bottom: 1px solid $comet;
 
   &:first-child {
@@ -150,7 +223,7 @@ a {
   z-index: 999;
   background-color: $black;
   opacity: 0;
-  font-size: 0.71em;
+  font-size: 1em;
   border-radius: 2px;
   transition: all 0.25s cubic-bezier(0,0,0,1);
   transform: translate3d(0,0px,0);

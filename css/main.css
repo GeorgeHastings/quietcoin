@@ -17,12 +17,10 @@
   box-sizing: border-box; }
 
 ::-moz-selection {
-  background: #F7F6F5;
-  color: #525568; }
+  background: #AAA; }
 
 ::selection {
-  background: #F7F6F5;
-  color: #525568; }
+  background: #AAA; }
 
 html,
 body {
@@ -38,13 +36,17 @@ body {
   justify-content: flex-start;
   text-align: left;
   font-family: "Roboto Mono", monospace;
-  font-size: 20px;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   transition: all 0.5s ease; }
   body.offline {
     color: white;
     background-color: #20212B; }
+    body.offline svg path {
+      fill: white; }
+    body.offline svg text {
+      color: white; }
   body.online {
     color: #20212B;
     background-color: white; }
@@ -54,13 +56,55 @@ a {
   text-decoration: none;
   line-height: 1.55em; }
 
-.wrapper {
-  max-width: 500px;
-  padding: 2em; }
+.content-container {
+  display: flex;
+  flex-direction: row;
+  padding: 2em 4em; }
+
+header {
+  width: 100%;
+  padding: 2em 4em; }
+  header svg {
+    width: 100px; }
+
+.coin-profile-container {
+  margin-right: 4em;
+  width: 300px; }
+
+@media screen and (max-width: 480px) {
+  header {
+    padding: 2em 2em; }
+  .content-container {
+    padding: 2em 2em; }
+  .coin-profile-container {
+    width: 100%; } }
+
+.marketplace-container {
+  width: 100%;
+  min-width: 500px;
+  font-size: 1em;
+  font-weight: 200; }
+  .marketplace-container h3 {
+    margin-top: 0;
+    font-size: 0.85em;
+    font-weight: 400;
+    text-transform: uppercase; }
+  .marketplace-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  .marketplace-container li {
+    display: block;
+    border-bottom: 1px solid #525568;
+    padding: 1em 0;
+    line-height: 2; }
+    .marketplace-container li:first-child {
+      border-top: 1px solid #525568; }
 
 .connection {
-  font-size: 0.6em;
-  text-transform: uppercase; }
+  font-size: 0.85em;
+  text-transform: uppercase;
+  margin-bottom: 1em; }
   .connection.on:before {
     content: attr(data-buzzword);
     text-transform: uppercase;
@@ -107,7 +151,7 @@ a {
     margin-top: -4px;
     border-radius: 50%;
     background-color: currentColor;
-    font-size: 0.5em; }
+    font-size: 0.7em; }
     .graph-container .indicator:after {
       content: attr(data-time);
       position: absolute;
@@ -119,8 +163,9 @@ a {
   text-align: left; }
 
 .item {
-  font-size: 0.7em;
+  font-size: 1em;
   line-height: 2;
+  padding: 1em 0;
   border-bottom: 1px solid #525568; }
   .item:first-child {
     border-top: 1px solid #525568; }
@@ -137,7 +182,7 @@ a {
   z-index: 999;
   background-color: #20212B;
   opacity: 0;
-  font-size: 0.71em;
+  font-size: 1em;
   border-radius: 2px;
   transition: all 0.25s cubic-bezier(0, 0, 0, 1);
   transform: translate3d(0, 0px, 0); }

@@ -10,18 +10,33 @@
 	</head>
 	<body class="online">
 		<div id="app" class="wrapper">
-			<div class="offline-counter">
-				<div class="connection" data-buzzword="•"></div>
-				<div id="timer" class="timer"></div>
-			</div>
-			<div class="graph-container">
-				<div class="indicator"></div>
-				<canvas id="plot" height="100" width="190"></canvas>
-			</div>
-			<div class="info">
-				<div class="item">QIT/sec: <span class="token-multiplier">0<span></div>
-					<div class="item">QIT/min: <span class="token-rate">0<span></div>
-				<div class="item">ACCRUED: <span class="token-accrued">0<span></div>
+			<header>
+				<svg width="353" height="100" viewBox="0 0 353 100" xmlns="http://www.w3.org/2000/svg"><g fill="#000" fill-rule="evenodd"><path d="M82.74 87.81c-7.04 6.106-15.862 10.316-25.775 11.71C29.62 103.363 4.335 84.31.493 56.965-3.35 29.62 15.703 4.335 43.048.493 46.493.01 49.905-.112 53.246.1c-.546.057-1.094.123-1.642.2-23.244 3.267-39.438 24.758-36.172 48C18.7 71.546 40.19 87.74 63.434 84.474c4.184-.588 8.14-1.767 11.796-3.44C70.525 76.87 64.015 73.86 55.7 72c14.34-7.78 23.932-8.413 28.772-1.898.754 1.015 1.59 1.987 2.51 2.918 7.26-6.995 11.962-16.49 12.878-26.855.88 11.268-2.087 22.055-7.856 30.975 4.524 3.04 10.256 5.46 17.198 7.257-12.06 4.77-20.88 5.91-26.463 3.414zM134.87 98.815l20.327-12.705 2.3 11.737 21.174-4.235-.24-1.936-5.325.363c-.847-3.63-1.33-6.414-1.33-11.254V38.678h-1.937l-21.296 3.993.12 1.937 6.293-.605v40.05l-3.388 1.937c-3.025 1.814-5.203 3.024-8.107 3.024-3.872 0-6.05-2.3-6.05-7.744V38.678h-1.936l-21.9 3.993v1.937l6.29-.605v36.905c0 12.22 2.663 17.908 15.005 17.908zm61.467-70.543l10.77-.726 1.45-7.26-.725-7.744-4.114-.847-10.648.847-1.33 6.534.846 8.47 3.75.726zM185.327 97h29.644v-1.936l-6.412-.968v-55.66h-1.936l-21.66 4.598.243 2.057 6.534-1.088v50.094l-6.414.968V97zm85.91-15.61l1.088 1.453c-7.744 7.744-13.552 11.737-22.748 15.972-15.61 0-28.677-10.285-28.677-27.83 0-18.755 13.43-30.008 29.282-33.154 12.342 0 22.022 7.26 22.022 21.78v4.6h-36.18c1.332 13.067 9.197 21.537 21.055 21.537 5.444 0 9.558-1.694 14.156-4.356zm-25.41-39.93c-6.535 0-9.923 6.05-9.923 18.998v1.815h18.634V57.19c0-10.042-1.936-15.73-8.712-15.73zm52.634 57.355L318.67 88.53l-.847-1.815c-3.508 1.694-6.05 2.662-9.68 2.662-3.87 0-6.654-2.3-6.654-7.38V43.033h15.367v-1.936h-15.367V23.674l-16.82 9.196v8.228h-7.985v1.936h7.987v40.05c0 9.56 3.993 15.73 13.794 15.73z"/><text font-family="Arial-BoldMT, Arial" font-size="18" font-weight="bold"><tspan x="309" y="16">COIN</tspan></text></g></svg>
+			</header>
+			<div class="content-container">
+				<div class="coin-profile-container">
+					<div class="offline-counter">
+						<div class="connection" data-buzzword="•"></div>
+						<div id="timer" class="timer"></div>
+					</div>
+					<div class="graph-container">
+						<div class="indicator"></div>
+						<canvas id="plot" height="100" width="190"></canvas>
+					</div>
+					<div class="info">
+						<div class="item">QIT/sec: <span class="token-multiplier">0<span></div>
+							<div class="item">QIT/min: <span class="token-rate">0<span></div>
+						<div class="item">QIT Owned: <span class="token-accrued">0<span></div>
+					</div>
+				</div>
+				<div class="marketplace-container">
+					<h3>Marketplace</h3>
+					<ul class="marketplace-items">
+						<li>Headspace - 3 months free</li>
+						<li>Get your Juice on</li>
+						<li>Rumble in the jungle hiking trip</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="toaster show"></div>

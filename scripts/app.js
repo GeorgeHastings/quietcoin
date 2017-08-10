@@ -10,6 +10,7 @@ const $connection = document.querySelector('.connection');
 
 let showT;
 let connection;
+let afterHoursSet = false;
 let tokenAccrued = 0;
 
 class Stopwatch {
@@ -172,20 +173,20 @@ var getCurrentTime = function() {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     $indicator.setAttribute('data-time', `${hours}:${minutes}`);
     $tokenMultiplier.innerText = tokenMultiplier * 0.1;
-    $tokenRate.innerText = tokenMultiplier *60 * 0.1;
-
+    $tokenRate.innerText = tokenMultiplier * 60 * 0.1;
 
     if(!connection) {
       tokenAccrued += tokenMultiplier;
       $tokenAccrued.innerText = tokenAccrued*0.1;
     }
   }
-  else {
+  else if (!afterHoursSet){
     showToaster('After hours', 4000, 'off');
     $connection.classList = 'connection off';
     $connection.innerText = 'After hours';
     document.body.classList = 'offline';
     $indicator.setAttribute('style', 'display: none;');
+    afterHoursSet = true;
   }
 };
 
